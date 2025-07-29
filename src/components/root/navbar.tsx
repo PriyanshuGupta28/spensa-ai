@@ -12,8 +12,8 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
+import Image from "next/image";
 const Navbar: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const links = [
@@ -32,10 +32,18 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed top-8 w-full flex justify-center items-center px-5 md:px-10 lg:px-20 z-10">
+    <nav className="fixed top-8 w-full flex justify-center items-center px-5 md:px-10 lg:px-20 z-30">
       <div className="container h-16 w-full border rounded-2xl flex justify-between items-center px-5 md:px-8 lg:px-10 bg-background/80 backdrop-blur">
         <Link href={"/"}>
-          <div className="h-10 w-10 bg-amber-400 rounded-full cursor-pointer"></div>
+          <div className="h-10 w-10 rounded-full cursor-pointer flex gap-1 items-center">
+            <Image
+              src={"/spensa-ai-logo.svg"}
+              alt="spensa-ai"
+              width={40}
+              height={40}
+            />
+            <p className="whitespace-nowrap text-xl font-bold">Spensa Ai</p>
+          </div>
         </Link>
         <div className="flex gap-6 justify-center items-center">
           <div className="hidden md:flex gap-4">
@@ -69,7 +77,7 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu */}
 
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent>
+        <SheetContent className="z-50">
           <SheetHeader>
             <SheetTitle className="text-bold text-2xl border-b py-5">
               Spensa Ai

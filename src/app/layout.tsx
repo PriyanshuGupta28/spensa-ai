@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { generateSEO } from "@/config/seo/seo.utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,10 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Spensa Ai",
-  description: "Spensa Ai is a your personal spense assistant with AI",
-};
+export const metadata: Metadata = generateSEO();
 
 export default function RootLayout({
   children,

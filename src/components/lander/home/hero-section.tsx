@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
       <div className="flex flex-col justify-center items-center mt-5 space-y-5">
         <h1 className="text-2xl md:text-4xl font-bold text-center leading-relaxed tracking-wider max-w-2xl">
           Track Smart,{" "}
-          <span className="relative text-primary">
+          <span className="relative text-primary dark:text-blue-500">
             Spend
             <svg
               width="287"

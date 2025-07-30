@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
               width={40}
               height={40}
             />
-            <p className="whitespace-nowrap text-xl font-bold">Spensa Ai</p>
+            <p className="whitespace-nowrap text-xl font-bold">Xspensa Ai</p>
           </div>
         </Link>
         <div className="flex gap-6 justify-center items-center">

@@ -1,7 +1,12 @@
 import React from "react";
+import AboutDetails from "@/components/lander/about/about-details";
 
-const About = () => {
-  return <div>About</div>;
+const About: React.FC = () => {
+  return (
+    <div>
+      <AboutDetails />
+    </div>
+  );
 };
 
 export default About;

@@ -1,3 +1,4 @@
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import Footer from "@/components/root/footer";
 import Navbar from "@/components/root/navbar";
 import ThemeToggleButton from "@/components/ui/theme-toggle-button";
@@ -9,6 +10,7 @@ export default function LanderLayout({
 }>) {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
       <main className="flex justify-center items-center px-5 md:px-10 lg:px-20">
         <div className="container mt-30">

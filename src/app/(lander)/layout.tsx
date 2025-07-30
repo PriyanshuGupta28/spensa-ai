@@ -1,3 +1,4 @@
+import Footer from "@/components/root/footer";
 import Navbar from "@/components/root/navbar";
 import ThemeToggleButton from "@/components/ui/theme-toggle-button";
 
@@ -18,6 +19,7 @@ export default function LanderLayout({
           {children}
         </div>
       </main>
+      <Footer />
     </>
   );
 }

@@ -75,12 +75,12 @@ export function LoginForm({
                 </div>
                 <div className="grid ">
                   <div className="flex items-center">
-                    <a
-                      href="#"
+                    <Link
+                      href="/reset"
                       className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                     >
                       Forgot your password?
-                    </a>
+                    </Link>
                   </div>
                   <FormField
                     control={form.control}

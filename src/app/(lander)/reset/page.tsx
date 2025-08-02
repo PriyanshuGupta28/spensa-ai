@@ -1,7 +1,12 @@
+import ForgetPass from "@/components/auth/forget-pass";
 import React from "react";
 
-const ResetPage = () => {
-  return <div>ResetPage</div>;
+const ForgetPassword: React.FC = () => {
+  return (
+    <>
+      <ForgetPass />
+    </>
+  );
 };
 
-export default ResetPage;
+export default ForgetPassword;

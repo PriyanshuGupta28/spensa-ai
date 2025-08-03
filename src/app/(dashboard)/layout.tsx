@@ -1,13 +1,6 @@
-import BottomNav from "@/components/dashboard/bottom-nav";
+import React from "react";
+import { DynamicBreadcrumb } from "@/components/dashboard/dynamic-breadcrumb";
 import { AppSidebar } from "@/components/dashboard/sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -23,37 +16,28 @@ export default function DashboardLayout({
 }>) {
   return (
     <>
-      <ThemeToggleButton
-        className="fixed top-5 right-5 z-10 cursor-pointer"
-        start="top-right"
-      />
-      <BottomNav />
       <SidebarProvider>
         <AppSidebar />
-        <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+        <SidebarInset className="flex flex-1 flex-col">
+          <header className="fixed top-0 right-0 left-0 z-40 flex h-14 shrink-0 justify-between items-center gap-2 border bg-background transition-[width,height] ease-linear md:left-64 md:w-[calc(100%-16rem)] group-has-data-[collapsible=icon]/sidebar-wrapper:md:left-12 group-has-data-[collapsible=icon]/sidebar-wrapper:md:w-[calc(100%-2rem)]">
             <div className="flex items-center gap-2 px-4">
               <SidebarTrigger className="-ml-1" />
               <Separator
                 orientation="vertical"
                 className="mr-2 data-[orientation=vertical]:h-4"
               />
-              <Breadcrumb>
-                <BreadcrumbList>
-                  <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink href="#">
-                      Building Your Application
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator className="hidden md:block" />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
+              <DynamicBreadcrumb />
+            </div>
+            <div>
+              <ThemeToggleButton
+                className=" cursor-pointer mr-5"
+                start="top-right"
+              />
             </div>
           </header>
-          <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-14 group-has-data-[collapsible=icon]/sidebar-wrapper:pt-12">
+            {children}
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </>

@@ -1,7 +1,6 @@
 "use client";
 
 import { Bell, ChevronRight, DollarSign, type LucideIcon } from "lucide-react";
-
 import {
   Collapsible,
   CollapsibleContent,
@@ -9,15 +8,17 @@ import {
 } from "@/components/ui/collapsible";
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { usePathname } from "next/navigation";
 
 export function NavMain({
   items,
@@ -33,9 +34,11 @@ export function NavMain({
     }[];
   }[];
 }) {
+  const pathname = usePathname();
+  const { toggleSidebar } = useSidebar();
+  const isMobile = useIsMobile();
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Xpensa Ai Dashboard</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
@@ -56,8 +59,14 @@ export function NavMain({
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <Link href={subItem.url}>
+                      <SidebarMenuSubButton
+                        asChild
+                        isActive={pathname === subItem.url}
+                      >
+                        <Link
+                          href={subItem.url}
+                          onClick={() => isMobile && toggleSidebar()}
+                        >
                           <span>{subItem.title}</span>
                         </Link>
                       </SidebarMenuSubButton>
@@ -68,14 +77,26 @@ export function NavMain({
             </SidebarMenuItem>
           </Collapsible>
         ))}
-        <SidebarMenuButton asChild>
-          <Link href="/dashboard/income-tracker">
+        <SidebarMenuButton
+          asChild
+          isActive={pathname === "/dashboard/income-tracker"}
+        >
+          <Link
+            href="/dashboard/income-tracker"
+            onClick={() => isMobile && toggleSidebar()}
+          >
             <DollarSign />
             Income Tracker
           </Link>
         </SidebarMenuButton>
-        <SidebarMenuButton asChild>
-          <Link href="/dashboard/notifications">
+        <SidebarMenuButton
+          asChild
+          isActive={pathname === "/dashboard/notifications"}
+        >
+          <Link
+            href="/dashboard/notifications"
+            onClick={() => isMobile && toggleSidebar()}
+          >
             <Bell />
             Notifications
           </Link>

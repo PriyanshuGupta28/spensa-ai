@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Bot, LayoutDashboard } from "lucide-react";
-
 import { NavMain } from "@/components/dashboard/nav-main";
 import { NavUser } from "@/components/dashboard/nav-user";
 import { SidebarHeaderNav } from "@/components/dashboard/sidebar-header-nav";
@@ -28,6 +27,10 @@ const data = {
       icon: LayoutDashboard,
       isActive: true,
       items: [
+        {
+          title: "Dashboard",
+          url: "/dashboard",
+        },
         {
           title: "Transactions",
           url: "/dashboard/transactions",

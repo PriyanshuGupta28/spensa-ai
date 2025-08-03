@@ -1,9 +1,7 @@
 import React from "react";
 
-const IncomeTracker = () => {
-  return (
-    <div className="h-[300svh] flex justify-center items-center">page</div>
-  );
+const IncomeTrackerPage = () => {
+  return <div className="">page</div>;
 };
 
-export default IncomeTracker;
+export default IncomeTrackerPage;

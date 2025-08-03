@@ -28,7 +28,7 @@ export default function TestimonialSection() {
   return (
     <section>
       <div className="py-24">
-        <div className="@container mx-auto w-full max-w-5xl px-6">
+        <div className="@container mx-auto w-full max-w-6xl px-6">
           <div className="mb-12">
             <h2 className="text-foreground text-4xl font-semibold">
               What Our Clients Say

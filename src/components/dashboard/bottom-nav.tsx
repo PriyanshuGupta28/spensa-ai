@@ -8,88 +8,71 @@ import {
   LayoutDashboard,
 } from "lucide-react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-
-const navLinks = [
-  {
-    title: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Transactions",
-    href: "/dashboard/transactions",
-    icon: ArrowLeftRight,
-  },
-  {
-    title: "Income Tracker",
-    href: "/dashboard/income-tracker",
-    icon: BanknoteArrowUp,
-  },
-  {
-    title: "Notification",
-    href: "/dashboard/notification",
-    icon: Bell,
-  },
-];
+import { motion } from "motion/react";
 
 const BottomNav = () => {
   const pathname = usePathname();
 
+  const navLinks = [
+    {
+      title: "Dashboard",
+      href: "/dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      title: "Transactions",
+      href: "/dashboard/transactions",
+      icon: ArrowLeftRight,
+    },
+    {
+      title: "Income Tracker",
+      href: "/dashboard/income-tracker",
+      icon: BanknoteArrowUp,
+    },
+    {
+      title: "Notification",
+      href: "/dashboard/notification",
+      icon: Bell,
+    },
+  ];
   return (
-    <nav className="fixed bottom-3 left-0 right-0 z-50 md:hidden w-[95%] h-16 bg-white/10 backdrop-blur-lg shadow-2xl border border-white/20 rounded-2xl mx-auto flex items-center justify-around overflow-hidden">
-      <AnimatePresence>
-        {navLinks.map((link) => {
-          const isActive = pathname === link.href;
-
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="relative w-full h-full flex items-center justify-center"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
+    <nav className="fixed bottom-2 left-0 right-0 z-50 h-16 md:hidden w-[95%] border bg-background text-center text-base rounded-2xl mx-auto flex justify-center items-center">
+      {navLinks.map((link) => (
+        <motion.div
+          initial={{ opacity: 0, top: "200px" }}
+          animate={{ opacity: 1, top: "0px" }}
+          transition={{ duration: 0.2 }}
+          key={link.href + link.title}
+          className={cn(
+            "flex items-center justify-center w-full h-full flex-col"
+          )}
+        >
+          <Link
+            href={link.href}
+            className={cn(
+              "flex items-center justify-center w-full h-full flex-col"
+            )}
+          >
+            {link.icon && (
+              <link.icon
                 className={cn(
-                  "flex flex-col items-center justify-center gap-1 text-xs w-full h-full transition-colors duration-200",
-                  isActive ? "text-foreground" : "text-muted-foreground"
+                  pathname === link.href ? "" : "text-muted-foreground"
                 )}
-              >
-                <motion.div
-                  animate={isActive ? { scale: 1.2 } : { scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  className="relative"
-                >
-                  {link.icon && (
-                    <link.icon strokeWidth={isActive ? 2.5 : 1.8} />
-                  )}
-                </motion.div>
-                <span>{link.title}</span>
-              </motion.div>
-            </Link>
-          );
-        })}
-      </AnimatePresence>
-
-      {/* Sliding underline */}
-      <motion.div
-        layoutId="active-tab-underline"
-        className="absolute bottom-1 w-5 h-1 bg-foreground rounded-full"
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        style={{
-          left: `${navLinks.findIndex((l) => l.href === pathname) * 25 + 9.5}%`,
-        }}
-      />
-      <motion.div
-        layoutId="active-tab-circle"
-        className="absolute -bottom-0 w-6 h-full bg-foreground blur-2xl rounded-full z-0"
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        style={{
-          left: `${navLinks.findIndex((l) => l.href === pathname) * 25 + 9.5}%`,
-        }}
-      />
+              />
+            )}
+            <span
+              className={cn(
+                "text-xs",
+                pathname === link.href ? "font-bold" : "text-muted-foreground"
+              )}
+            >
+              {link.title}
+            </span>
+          </Link>
+        </motion.div>
+      ))}
     </nav>
   );
 };

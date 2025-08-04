@@ -21,6 +21,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { authClient } from "@/lib/auth-client";
 
 const formSchema = z.object({
   name: z.string().min(2).max(30),
@@ -45,6 +46,11 @@ export function RegisterForm({
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
+    authClient.signUp.email({
+      email: values.email,
+      password: values.password,
+      name: values.name,
+    });
     form.reset();
   };
   return (

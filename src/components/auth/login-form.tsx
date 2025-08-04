@@ -21,6 +21,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { authClient } from "@/lib/auth-client";
 
 const formSchema = z.object({
   email: z.email(),
@@ -44,6 +45,10 @@ export function LoginForm({
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
     form.reset();
+    authClient.signIn.email({
+      email: values.email,
+      password: values.password,
+    });
   };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

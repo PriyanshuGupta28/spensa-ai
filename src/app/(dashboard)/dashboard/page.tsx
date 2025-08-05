@@ -8,11 +8,11 @@ const DashboardPage = () => {
   const {
     data: session,
     isPending, //loading state
-    error, //error object
-    refetch, //refetch the session
   } = authClient.useSession();
 
-  console.log(session);
+  if (isPending) {
+    return <>Loading...</>;
+  }
 
   if (!session?.user && !isPending) {
     return redirect("/login");

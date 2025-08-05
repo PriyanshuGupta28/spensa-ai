@@ -22,6 +22,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { authClient } from "@/lib/auth-client";
+import { BASE_URL } from "@/utilities/contants";
+import { useState } from "react";
+import { Loader } from "lucide-react";
 
 const formSchema = z.object({
   email: z.email(),
@@ -34,6 +37,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,14 +46,35 @@ export function LoginForm({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     form.reset();
-    authClient.signIn.email({
-      email: values.email,
-      password: values.password,
-    });
+    setIsLoading(true);
+    try {
+      const res = await authClient.signIn.email({
+        email: values.email,
+        password: values.password,
+        callbackURL: "/dashboard",
+      });
+      console.log(res);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
   };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const res = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard",
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -102,10 +127,22 @@ export function LoginForm({
                   />
                 </div>
                 <div className="flex flex-col gap-3">
-                  <Button type="submit" className="w-full">
-                    Login
+                  <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? (
+                      <>
+                        <Loader className="w-4 h-4 animate-spin" />
+                      </>
+                    ) : (
+                      "Login"
+                    )}
                   </Button>
-                  <Button type="button" variant="outline" className="w-full">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    disabled={isLoading}
+                    onClick={handleGoogleLogin}
+                  >
                     Login with Google
                   </Button>
                 </div>

@@ -4,15 +4,15 @@ const baseURL = "https://xpensa-ai.vercel.app";
 
 export const defaultSEO: Metadata = {
   title: {
-    default: "Spensa Ai",
-    template: "%s | DevsLoka UI ",
+    default: "Xspensa Ai",
+    template: "%s | Xspensa Ai",
   },
-  description: "Spensa Ai is a your personal spense assistant with AI",
+  description: "Xspensa Ai is a your personal spense assistant with AI",
   keywords: [
-    "spense ai",
-    "spense assistant",
-    "spense tracker",
-    "spense tracker ai",
+    "Xspensa ai",
+    "Xspensa assistant",
+    "Xspensa tracker",
+    "Xspensa tracker ai",
   ],
   metadataBase: new URL(baseURL),
   alternates: {

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { DynamicBreadcrumb } from "@/components/dashboard/dynamic-breadcrumb";
 import { AppSidebar } from "@/components/dashboard/sidebar";
 import { Separator } from "@/components/ui/separator";
@@ -8,7 +10,6 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import ThemeToggleButton from "@/components/ui/theme-toggle-button";
-
 export default function DashboardLayout({
   children,
 }: Readonly<{

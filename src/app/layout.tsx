@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { generateSEO } from "@/config/seo/seo.utils";
 import { TanstackProviders } from "@/providers/tanstack-provider";
+import { AuthProvider } from "@/providers/auth-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,9 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <TanstackProviders>{children}</TanstackProviders>
+            <TanstackProviders>
+              <AuthProvider>{children}</AuthProvider>
+            </TanstackProviders>
           </ThemeProvider>
         </body>
       </html>

@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import DashNavbar from "@/components/dashboard/dash-navbar";
 
 export const metadata: Metadata = generateSEO({
-  title: "Dashboard | Xpensa AI",
+  title: "Dashboard",
   path: "/dashboard",
 });
 

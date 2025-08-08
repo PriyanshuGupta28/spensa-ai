@@ -22,7 +22,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { authClient } from "@/lib/auth-client";
-import { BASE_URL } from "@/utilities/contants";
 import { useState } from "react";
 import { Loader } from "lucide-react";
 

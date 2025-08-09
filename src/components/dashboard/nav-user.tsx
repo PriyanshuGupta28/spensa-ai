@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
 import { Skeleton } from "../ui/skeleton";
+import Link from "next/link";
 
 export function NavUser({}) {
   const { isMobile } = useSidebar();
@@ -84,18 +85,20 @@ export function NavUser({}) {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuGroup>
+                {/* <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <Sparkles />
                     Upgrade to Pro
                   </DropdownMenuItem>
-                </DropdownMenuGroup>
+                </DropdownMenuGroup> */}
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <BadgeCheck />
-                    Account
-                  </DropdownMenuItem>
+                  <Link href="/dashboard/profile">
+                    <DropdownMenuItem>
+                      <BadgeCheck />
+                      Profile
+                    </DropdownMenuItem>
+                  </Link>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem

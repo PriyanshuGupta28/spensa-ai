@@ -5,6 +5,7 @@ import {
   QueryClientProvider,
   isServer,
 } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import * as React from "react";
 
 function makeQueryClient() {
@@ -12,6 +13,7 @@ function makeQueryClient() {
     defaultOptions: {
       queries: {
         staleTime: 60 * 1000,
+        refetchOnWindowFocus: false,
       },
     },
   });
@@ -33,6 +35,7 @@ export function TanstackProviders(props: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       {props.children}
     </QueryClientProvider>
   );

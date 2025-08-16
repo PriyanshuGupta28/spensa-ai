@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
+import { EditIcon, EyeIcon, Trash } from "lucide-react";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -59,12 +60,14 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => (
       <div className="flex gap-2">
         <Button size={"sm"} onClick={() => console.log(row.original)}>
-          View
+          <EyeIcon />
         </Button>
         <Button size={"sm"} onClick={() => console.log(row.original)}>
-          Edit
+          <EditIcon />
         </Button>
-        <Button size={"sm"}>Remove</Button>
+        <Button size={"sm"}>
+          <Trash />
+        </Button>
       </div>
     ),
   },

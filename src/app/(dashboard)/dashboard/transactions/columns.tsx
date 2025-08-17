@@ -1,5 +1,6 @@
 "use client";
 
+import { DeleteModal } from "@/components/dashboard/transactions/delete-modal";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
@@ -65,9 +66,7 @@ export const columns: ColumnDef<Payment>[] = [
         <Button size={"sm"} onClick={() => console.log(row.original)}>
           <EditIcon />
         </Button>
-        <Button size={"sm"}>
-          <Trash />
-        </Button>
+        <DeleteModal />
       </div>
     ),
   },
